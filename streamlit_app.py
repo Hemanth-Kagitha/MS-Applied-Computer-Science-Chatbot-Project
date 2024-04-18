@@ -48,13 +48,15 @@ def genai_engine(query):
 st.set_page_config(page_title="MS-Applied Computer Science Chatbot Project")
 
 # Display image and title
-image = Image.open('C:/Users/s559891/OneDrive - nwmissouri.edu/Documents/Z_GDP 02/GPT3/chatbot.png')
+'''image = Image.open('C:/Users/s559891/OneDrive - nwmissouri.edu/Documents/Z_GDP 02/GPT3/chatbot.png')
 image_resized = image.resize((150, 150))
 col1, col2 = st.columns([2, 5])
 with col1:
     st.image(image_resized, use_column_width=True)
 with col2:
-    st.title("MS-Applied Computer Science Chatbot Project")
+    st.title("MS-Applied Computer Science Chatbot Project")'''
+
+st.title("MS-Applied Computer Science Chatbot Project")
 
 # Initialize chat history
 if "messages" not in st.session_state:
