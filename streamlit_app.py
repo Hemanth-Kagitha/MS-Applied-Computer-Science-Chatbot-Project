@@ -5,6 +5,7 @@ import streamlit as st
 from PIL import Image
 import sqlite3
 import faiss
+from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
@@ -35,6 +36,13 @@ db = FAISS.from_documents(docs, embeddings)
 # Initialize question-answering chain
 llm = HuggingFaceHub(repo_id="google/flan-t5-large", model_kwargs={"temperature": 0.8, "max_length": 512})
 chain = load_qa_chain(llm, chain_type="stuff")
+queryText = "Tell me about the course overview?"
+docsResult = db.similarity_search(queryText)
+
+def genai_engine(query):
+    # Run the chain with the query
+    response = chain.run(input_documents=docsResult, question=query)
+    return response
 
 # Streamlit app
 st.set_page_config(page_title="MS-Applied Computer Science Chatbot Project")
